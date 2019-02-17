@@ -8,4 +8,8 @@ two_dimensional_array = [
     for row in range(row_number)
 ]
 
+for x in range(row_number):
+    for y in range(col_number):
+        two_dimensional_array[x][y] = x * y
+
 print_two_dimensional_array(two_dimensional_array)

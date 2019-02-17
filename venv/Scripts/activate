@@ -37,7 +37,7 @@ deactivate () {
 # unset irrelevant variables
 deactivate nondestructive
 
-VIRTUAL_ENV="C:\Users\vinic\Desktop\Projetos no PyCharm\ListaExercicios\venv"
+VIRTUAL_ENV="C:\Users\vinic\Desktop\Projetos no PyCharm\Python-programming-exercises\venv"
 export VIRTUAL_ENV
 
 _OLD_VIRTUAL_PATH="$PATH"

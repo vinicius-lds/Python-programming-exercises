@@ -1,4 +1,4 @@
-#!"C:\Users\vinic\Desktop\Projetos no PyCharm\ListaExercicios\venv\Scripts\python.exe"
+#!"C:\Users\vinic\Desktop\Projetos no PyCharm\Python-programming-exercises\venv\Scripts\python.exe"
 # EASY-INSTALL-ENTRY-SCRIPT: 'setuptools==39.1.0','console_scripts','easy_install-3.6'
 __requires__ = 'setuptools==39.1.0'
 import re

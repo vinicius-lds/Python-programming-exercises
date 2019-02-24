@@ -78,25 +78,34 @@ def get_multiple_string_input(
         min_length=-1,
         size=-1,
         list_size_error_message='O tamanho da lista é inválido!',
-        separator=','
+        separator=',',
+        string_validator=None
 ):
     if size >= 0:
         max_length = size
         min_length = size
     is_running = True
+    is_valid = True
     final_list = list()
     while is_running:
         given_input = input(message)
         for x in given_input.split(sep=separator):
-            final_list.append(x)
-        if min_length >= 0 and min_length > len(final_list)\
-                or 0 <= max_length < len(final_list):
-            print(list_size_error_message)
-            final_list.clear()
-        else:
-            is_running = False
+            if string_validator and not string_validator(x):
+                is_valid = False
+                final_list.clear()
+                break
+            else:
+                is_valid = True
+                final_list.append(x)
+        if is_valid:
+            if min_length >= 0 and min_length > len(final_list)\
+                    or 0 <= max_length < len(final_list):
+                print(list_size_error_message)
+                final_list.clear()
+            else:
+                is_running = False
 
-    return final_list # if max_length < 0 else final_list[0:max_length]
+    return final_list
 
 
 def print_two_dimensional_array(two_dimensional_array):
@@ -104,3 +113,31 @@ def print_two_dimensional_array(two_dimensional_array):
         for y in range(len(two_dimensional_array[x])):
             print('{} '.format(two_dimensional_array[x][y]), end='')
         print()
+
+def get_multiple_lines(
+        message='Insira um texto.',
+        exit_message='Para parar digite ext em um linha e aperte enter',
+        exit_command='ext',
+        return_type='array' #  Supported 'array' and 'string'
+):
+    print(message)
+    print(exit_message)
+    ext = False
+
+    lines = list()
+    final_string = ''
+
+    #  return_variable = None
+    while not ext:
+        given_input = input()
+        if given_input == exit_command:
+            ext = True
+        else:
+            {
+                'array': lambda value: lines.append(value),
+                'string': lambda value: final_string.__add__(value)
+            }[return_type](given_input)
+    return {
+        'array': lines,
+        'string': final_string
+    }[return_type]
